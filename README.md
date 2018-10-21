@@ -14,7 +14,7 @@ python 3, dynet 2.0.3, numpy 1.13.3
 ### Instruction to run:
 1. Download this [repository](https://github.com/Fan-Luo/factuality/archive/master.zip) and unzip it.
 2. Before running code file factuality_test.py, download data files [en-ud-test.conllu](https://github.com/UniversalDependencies/UD_English-EWT/blob/r1.2/en-ud-test.conllu) (to train the model with factuality.py,  also download [en-ud-train.conllu](https://github.com/UniversalDependencies/UD_English-EWT/blob/r1.2/en-ud-train.conllu) and [en-ud-dev.conllu](https://github.com/UniversalDependencies/UD_English-EWT/blob/r1.2/en-ud-dev.conllu)) and [UDS-IH2](http://decomp.io/projects/factuality/factuality_eng_udewt.tar.gz) and unzip them into the same directory where the Docker file locates.
-3. Download the trained model, including [trained.model](https://drive.google.com/file/d/1ONe9B5DhK2E3QO8L_WSz6CfL68YAO0TX/view?usp=sharing) and [tables.txt](https://drive.google.com/file/d/1kNkwuf6LpTHdBnRds78OMRAvntpylWRF/view?usp=sharing), to the same directory.
+3. Download the trained model, including [trained.model](https://drive.google.com/file/d/1zzV7wq-hiH_7uq7E33YqMDWkblpuOQWf/view?usp=sharing) and [tables.txt](hhttps://drive.google.com/file/d/1mnGnkUZGISkn5pUEKsOtRA53NJM2Fhw6/view?usp=sharing), to the same directory.
 4. Open terminal and change to the directory where all the files downloaded, then run the following script:
     
     *docker build -t luo-cs585-hw3 -f ./Dockerfile .*
