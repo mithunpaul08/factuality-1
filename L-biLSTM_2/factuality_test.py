@@ -217,8 +217,8 @@ embedding_parameters = RNN_model.lookup_parameters_from_numpy(emb_matrix_pretrai
 fw_RNN_unit = dy.LSTMBuilder(num_layers, embedding_dim, hidden_size, RNN_model)
 bw_RNN_unit = dy.LSTMBuilder(num_layers, embedding_dim, hidden_size, RNN_model)
 
-second_fw_RNN_unit = dy.LSTMBuilder(num_layers, 2*embedding_dim, hidden_size, RNN_model)
-second_bw_RNN_unit = dy.LSTMBuilder(num_layers, 2*embedding_dim, hidden_size, RNN_model)
+second_fw_RNN_unit = dy.LSTMBuilder(num_layers, 2*hidden_size, hidden_size, RNN_model)
+second_bw_RNN_unit = dy.LSTMBuilder(num_layers, 2*hidden_size, hidden_size, RNN_model)
  
 pv1 = RNN_model.add_parameters(
         (regression_hidden_size, 2*hidden_size))

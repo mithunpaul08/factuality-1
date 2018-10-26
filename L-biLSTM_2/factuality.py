@@ -14,6 +14,7 @@ import datetime
 import math
 
 def load_pretrained_embeddings(path_to_file, take):
+
     embedding_size = 300
     embedding_matrix = None
     lookup = {"<unk>": 0}
@@ -40,6 +41,7 @@ def load_pretrained_embeddings(path_to_file, take):
                     embedding_matrix[1] = vector
                 c += 1
     return embedding_matrix, lookup
+
 
 def import_Treebank():
 
@@ -242,7 +244,8 @@ def train():
         train_mae, train_r = evaluate(train_predictions, train_facts)
         dev_mae, dev_r = evaluate(dev_predictions, dev_facts)
         print("%d\t %.2f\t %.2f\t %.2f\t %.2f\n" % (i+1, train_mae, train_r, dev_mae, dev_r))
-        
+        model_name = 'trained_' + str(i) + '.model'
+        RNN_model.save(model_name)
 
 def test():
 
@@ -322,8 +325,8 @@ embedding_parameters = RNN_model.lookup_parameters_from_numpy(emb_matrix_pretrai
 fw_RNN_unit = dy.LSTMBuilder(num_layers, embedding_dim, hidden_size, RNN_model)
 bw_RNN_unit = dy.LSTMBuilder(num_layers, embedding_dim, hidden_size, RNN_model)
 
-second_fw_RNN_unit = dy.LSTMBuilder(num_layers, 2*embedding_dim, hidden_size, RNN_model)
-second_bw_RNN_unit = dy.LSTMBuilder(num_layers, 2*embedding_dim, hidden_size, RNN_model)
+second_fw_RNN_unit = dy.LSTMBuilder(num_layers, 2*hidden_size, hidden_size, RNN_model)
+second_bw_RNN_unit = dy.LSTMBuilder(num_layers, 2*hidden_size, hidden_size, RNN_model)
  
 pv1 = RNN_model.add_parameters(
         (regression_hidden_size, 2*hidden_size))
@@ -356,12 +359,12 @@ trainer = dy.AdamTrainer(
 )
 trainer.learning_rate = 0.001
 batch_size = 1   # tune
-num_epochs = 6
+num_epochs = 20
 num_batches_testing = int(np.ceil(len(dev_tokens) / batch_size))
 num_batches_training = int(np.ceil(len(train_tokens) / batch_size))
 train()
 
-RNN_model.save("trained.model")
+# RNN_model.save("trained.model")
 #save tables
 tables = []
 tables.append(emb_matrix_pretrained) 
